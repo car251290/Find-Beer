@@ -1,21 +1,34 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { StackNavigator } from 'react-navigation'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+import HomeScreen from './Components/Home/HomeScreen'
+import SearchTabNavigator from './Components/Search/SearchTabNavigation'
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+import * as firebase from 'firebase'
+
+// Your web app's Firebase configuration
+var firebaseConfig = {
+  apiKey: "AIzaSyCrRu1Uu0L7uZlOlO18_AcOdc4oKGodjBc",
+  authDomain: "my-beer-app-347d9.firebaseapp.com",
+  databaseURL: "https://my-beer-app-347d9.firebaseio.com",
+  projectId: "my-beer-app-347d9",
+   storageBucket: "my-beer-app-347d9.appspot.com",
+  messagingSenderId: "677758847884",
+  appId: "1:677758847884:web:0d7dfef29cf6db3e44a4a9"
+ };
+ // Initialize Firebase
+ firebase.initializeApp(firebaseConfig);
+
+const App = StackNavigator({
+
+  HomeScreen: { screen: HomeScreen },
+  SearchTabNavigator: {
+    screen: SearchTabNavigator
+  }
+}, {
+    initialRouteName: 'HomeScreen'
+  })
+
+
+export default App 
